@@ -1,6 +1,6 @@
 import * as THREE from '../../cpp/vendor/three/three.module.js';
-import { tex, redraw, rr, INK, MUTED } from '../../cpp/three/office-kit.js?v=20261014-cs-11';
-import { show } from '../topics/sql-model.js?v=20261014-cs-11';
+import { tex, redraw, rr, INK, MUTED } from '../../cpp/three/office-kit.js?v=20261014-cs-18';
+import { show } from '../topics/sql-model.js?v=20261014-cs-18';
 
 // Building blocks of the SQL scenes: tables lying on a desk (header plates + row trays), tiles, and two little walkers.
 // Same font stack as the code editor, so the scene text matches the code.

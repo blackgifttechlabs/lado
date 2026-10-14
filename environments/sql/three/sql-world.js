@@ -1,7 +1,7 @@
-import { TimedWorld, THREE } from '../../cpp/three/timed-world.js?v=20261014-cs-11';
-import { tex, redraw, rr, INK, MUTED } from '../../cpp/three/office-kit.js?v=20261014-cs-11';
-import { sqlModel, previewStatement, show } from '../topics/sql-model.js?v=20261014-cs-11';
-import { MONO, CW, RH, HH, PX, PY, ACCENTS, mat, clamp, lerp, inOut, outCubic, outBack, V, tile, tileTex, setTileOpacity, TableMesh, makeBin, makeBot, pose, disposeActor } from './sql-kit.js?v=20261014-cs-11';
+import { TimedWorld, THREE } from '../../cpp/three/timed-world.js?v=20261014-cs-18';
+import { tex, redraw, rr, INK, MUTED } from '../../cpp/three/office-kit.js?v=20261014-cs-18';
+import { sqlModel, previewStatement, show } from '../topics/sql-model.js?v=20261014-cs-18';
+import { MONO, CW, RH, HH, PX, PY, ACCENTS, mat, clamp, lerp, inOut, outCubic, outBack, V, tile, tileTex, setTileOpacity, TableMesh, makeBin, makeBot, pose, disposeActor } from './sql-kit.js?v=20261014-cs-18';
 
 // The SQL scenes. Tables lie on desks. Every command has its own little show:
 //   CREATE builds the table piece by piece, INSERT drops a row in and fills the cells,

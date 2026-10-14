@@ -1,5 +1,5 @@
-import { rigsReady, deposit3D, withdraw3D, touchDoor3D } from '../three/physical-scene.js?v=20261014-cs-11';
-import { branchingModel } from './branching-model.js?v=20261014-cs-11';
+import { rigsReady, deposit3D, withdraw3D, touchDoor3D } from '../three/physical-scene.js?v=20261014-cs-18';
+import { branchingModel } from './branching-model.js?v=20261014-cs-18';
 const title='Conditional Branching with if, else if, and else';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const valueText=value=>value===undefined?'':typeof value==='string'?`"${value}"`:String(value);
@@ -73,7 +73,7 @@ function run(scene,state,initializeEntry=true) {
   boxes.forEach(box=>{if(box.querySelector('.branch-final-value')){animate(box.querySelector('.branch-entry-value'),[{opacity:1},{opacity:0}],150,exitAt,'forwards');reveal(box.querySelector('.branch-final-value'),exitAt);}});
 }
 function sync(stage) {
-  const lab=stage.closest('.cpp-lab'),active=lab?.querySelector('.cpp-flat-lesson h2')?.textContent.trim()===title;
+  const lab=stage.closest('.cpp-lab'),active=window.__ladoVH(lab)?.textContent.trim()===title;
   let scene=stage.querySelector('.cpp-branch-scene');
   if(!active){scene?.remove();stage.classList.remove('has-branch');return;}
   const editor=lab.querySelector('[data-role="lab-code"]');if(!editor)return;
@@ -82,7 +82,7 @@ function sync(stage) {
   const opened=lab.querySelector('.cpp-guided-drawer')?.getAttribute('aria-hidden')!=='true';
   if(!opened){scene.wasOpen=false;return;}
   let state=scene.state;
-  if(scene.code!==editor.value){scene.code=editor.value;state=branchingModel(editor.value);scene.state=state;}
+  if(scene.code!==window.__ladoCode(editor)){scene.code=window.__ladoCode(editor);state=branchingModel(window.__ladoCode(editor));scene.state=state;}
   const signature=JSON.stringify(state);
   if(!scene.wasOpen||signature!==scene.pendingSignature){
     scene.wasOpen=true;scene.pendingSignature=signature;clearTimeout(scene.renderTimer);

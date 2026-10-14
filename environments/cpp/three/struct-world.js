@@ -1,5 +1,5 @@
-import { TimedWorld, THREE, V, arc, plain, label, mat, clamp, lerp, inOut, outCubic, outBack, win } from './timed-world.js?v=20261014-cs-11';
-import { tex, redraw, rr, drawCard, cardHeight, drawBlueprintPage, INK, MUTED } from './office-kit.js?v=20261014-cs-11';
+import { TimedWorld, THREE, V, arc, plain, label, mat, clamp, lerp, inOut, outCubic, outBack, win } from './timed-world.js?v=20261014-cs-18';
+import { tex, redraw, rr, drawCard, cardHeight, drawBlueprintPage, INK, MUTED } from './office-kit.js?v=20261014-cs-18';
 
 // Structures: a records office. A struct is a blank form (blueprint); each variable is a filled-in card.
 export const CARD_W=3.0;

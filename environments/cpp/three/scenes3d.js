@@ -1,10 +1,10 @@
-import { RangeWorld, WhileWorld, NestedWorld, BreakWorld } from './loop-worlds.js?v=20261014-cs-11';
-import { LoopMachine } from './loop-machine.js?v=20261014-cs-11';
-import { DataWorld } from './data-world.js?v=20261014-cs-11';
-import { FuncWorld } from './func-world.js?v=20261014-cs-11';
-import { StructWorld } from './struct-world.js?v=20261014-cs-11';
-import { ClassWorld } from './class-world.js?v=20261014-cs-11';
-import { FileWorld } from './file-world.js?v=20261014-cs-11';
+import { RangeWorld, WhileWorld, NestedWorld, BreakWorld } from './loop-worlds.js?v=20261014-cs-18';
+import { LoopMachine } from './loop-machine.js?v=20261014-cs-18';
+import { DataWorld } from './data-world.js?v=20261014-cs-18';
+import { FuncWorld } from './func-world.js?v=20261014-cs-18';
+import { StructWorld } from './struct-world.js?v=20261014-cs-18';
+import { ClassWorld } from './class-world.js?v=20261014-cs-18';
+import { FileWorld } from './file-world.js?v=20261014-cs-18';
 
 // Picks the 3D scene for a lesson mode. Returns null when WebGL is unavailable so the flat scene is used instead.
 const WORLDS={for:LoopMachine,range:RangeWorld,while:WhileWorld,grid:NestedWorld,laps:BreakWorld};

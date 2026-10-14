@@ -1,4 +1,4 @@
-import { deposit3D } from '../three/physical-scene.js?v=20261014-cs-11';
+import { deposit3D } from '../three/physical-scene.js?v=20261014-cs-18';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const priority=op=>['*','/','%'].includes(op)?2:1;
 const letter=op=>({'*':'M','/':'D','%':'D','+':'A','-':'S'}[op]||'A');

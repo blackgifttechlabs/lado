@@ -1,5 +1,5 @@
-import { TimedWorld, THREE, V, arc, plain, label, mat, clamp, lerp, inOut, outCubic, outBack, win } from './timed-world.js?v=20261014-cs-11';
-import { tex, redraw, rr, INK, MUTED } from './office-kit.js?v=20261014-cs-11';
+import { TimedWorld, THREE, V, arc, plain, label, mat, clamp, lerp, inOut, outCubic, outBack, win } from './timed-world.js?v=20261014-cs-18';
+import { tex, redraw, rr, INK, MUTED } from './office-kit.js?v=20261014-cs-18';
 
 // Files: a library. Files are books on a shelf. A stream is a reader desk: it opens a book, shows the page,
 // keeps a reading mark, has status lamps, and (for writing) a small buffer tray that waits to be saved.

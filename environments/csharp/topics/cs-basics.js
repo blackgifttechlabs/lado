@@ -1,4 +1,4 @@
-import { topic } from './cs-common.js?v=20261014-cs-11';
+import { topic } from './cs-common.js?v=20261014-cs-18';
 
 export default [
   topic(1, 'Variables and Data Types', '📦', 'Store numbers, words and yes/no answers.',

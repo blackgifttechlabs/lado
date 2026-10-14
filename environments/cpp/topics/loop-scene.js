@@ -1,5 +1,5 @@
-import { loopModel } from './loop-model.js?v=20261014-cs-11';
-import { createWorld } from '../three/scenes3d.js?v=20261014-cs-11';
+import { loopModel } from './loop-model.js?v=20261014-cs-18';
+import { createWorld } from '../three/scenes3d.js?v=20261014-cs-18';
 
 // One replay scene for every loop lesson: variable boxes, a lesson-specific track, and the terminal, stepped frame by frame.
 const MODES={
@@ -104,9 +104,9 @@ function controls(scene,event) {
   stop(scene);scene.jump=true;scene.k=Math.max(0,Math.min(total-1,scene.k+(action==='next'?1:-1)));draw(scene);
 }
 function sync(stage) {
-  const lab=stage.closest('.cpp-lab'),name=lab?.querySelector('.cpp-flat-lesson h2')?.textContent.trim(),mode=MODES[name];
-  let scene=stage.querySelector('.cpp-loop-scene');
-  if(!mode){if(scene){stop(scene);scene.machine?.dispose();scene.remove();}stage.classList.remove('has-loop');return;}
+  const lab=stage.closest('.cpp-lab'),name=window.__ladoVH(lab)?.textContent.trim(),mode=MODES[name];
+  let scene=stage.querySelector('.cpp-loop-scene:not(.is-sql):not(.is-cs):not(.is-csd)');
+  if(!mode){if(scene){stop(scene);scene.machine?.dispose();scene.remove();}if(!stage.querySelector('.cpp-loop-scene'))stage.classList.remove('has-loop');return;}
   const editor=lab.querySelector('[data-role="lab-code"]');if(!editor)return;
   if(!scene){
     scene=document.createElement('section');scene.className='cpp-loop-scene';scene.k=0;stage.appendChild(scene);
@@ -116,9 +116,9 @@ function sync(stage) {
   stage.classList.add('has-loop');scene.mode=mode;
   const opened=lab.querySelector('.cpp-guided-drawer')?.getAttribute('aria-hidden')!=='true';
   if(!opened){scene.wasOpen=false;stop(scene);return;}
-  const changed=scene.code!==editor.value;
-  if(changed){scene.code=editor.value;scene.next=loopModel(editor.value,/^(data|func|struct|class|file)-/.test(mode)?{statements:true}:{});}
-  if(scene.machine&&(changed||!scene.querySelector('.cpp-lp-3d'))){scene.machine.setCode(editor.value);if(!scene.querySelector('.cpp-lp-3d'))draw(scene);}
+  const changed=scene.code!==window.__ladoCode(editor);
+  if(changed){scene.code=window.__ladoCode(editor);scene.next=loopModel(window.__ladoCode(editor),/^(data|func|struct|class|file)-/.test(mode)?{statements:true}:{});}
+  if(scene.machine&&(changed||!scene.querySelector('.cpp-lp-3d'))){scene.machine.setCode(window.__ladoCode(editor));if(!scene.querySelector('.cpp-lp-3d'))draw(scene);}
   if(changed||!scene.wasOpen){
     scene.wasOpen=true;clearTimeout(scene.debounce);const next=scene.next;
     scene.debounce=setTimeout(()=>{if(!scene.isConnected)return;scene.state=next;play(scene);},450);

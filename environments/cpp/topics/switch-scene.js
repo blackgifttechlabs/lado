@@ -1,4 +1,4 @@
-import { switchModel } from './switch-model.js?v=20261014-cs-11';
+import { switchModel } from './switch-model.js?v=20261014-cs-18';
 const title='Multi-way Branching with switch';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const valueText=value=>value===undefined?'':typeof value==='string'?`"${value}"`:String(value);
@@ -39,7 +39,7 @@ function run(scene,state) {
   state.cases.forEach((item,i)=>{if(item.status==='skipped')animate(scene.querySelector(`[data-station="${i}"]`),[{opacity:1},{opacity:.4}],400,total-600);});
 }
 function sync(stage) {
-  const lab=stage.closest('.cpp-lab'),active=lab?.querySelector('.cpp-flat-lesson h2')?.textContent.trim()===title;
+  const lab=stage.closest('.cpp-lab'),active=window.__ladoVH(lab)?.textContent.trim()===title;
   let scene=stage.querySelector('.cpp-switch-scene');
   if(!active){scene?.remove();stage.classList.remove('has-switch');return;}
   const editor=lab.querySelector('[data-role="lab-code"]');if(!editor)return;
@@ -47,7 +47,7 @@ function sync(stage) {
   stage.classList.add('has-switch');
   const opened=lab.querySelector('.cpp-guided-drawer')?.getAttribute('aria-hidden')!=='true';
   if(!opened){scene.wasOpen=false;return;}
-  if(scene.code!==editor.value){scene.code=editor.value;scene.state=switchModel(editor.value);}
+  if(scene.code!==window.__ladoCode(editor)){scene.code=window.__ladoCode(editor);scene.state=switchModel(window.__ladoCode(editor));}
   const state=scene.state,signature=JSON.stringify(state);
   if(!scene.wasOpen||signature!==scene.signature){
     scene.wasOpen=true;scene.signature=signature;clearTimeout(scene.renderTimer);

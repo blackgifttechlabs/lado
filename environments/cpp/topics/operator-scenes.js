@@ -1,7 +1,7 @@
-import { rigsReady, deposit3D, withdraw3D, openBox3D } from '../three/physical-scene.js?v=20261014-cs-11';
-import { logicalScene, bitwiseScene, bitwiseDuration, animateLogic, animateBitwise } from './operator-phases.js?v=20261014-cs-11';
-import { modelCode } from './operator-model.js?v=20261014-cs-11';
-import { precedenceScene, precedencePlan, animatePrecedence } from './precedence-scene.js?v=20261014-cs-11';
+import { rigsReady, deposit3D, withdraw3D, openBox3D } from '../three/physical-scene.js?v=20261014-cs-18';
+import { logicalScene, bitwiseScene, bitwiseDuration, animateLogic, animateBitwise } from './operator-phases.js?v=20261014-cs-18';
+import { modelCode } from './operator-model.js?v=20261014-cs-18';
+import { precedenceScene, precedencePlan, animatePrecedence } from './precedence-scene.js?v=20261014-cs-18';
 
 const esc = value => String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const topics = {'Logical Operators':'logical','Bitwise Operators':'bitwise','Increment and Decrement Operators':'increment','Conditional Ternary Operator':'ternary','Operator Precedence and Evaluation Order':'precedence'};
@@ -215,16 +215,16 @@ function showStep(scene,kind,index) {
   }));
 }
 function sync(stage) {
-  const lab=stage.closest('.cpp-lab'),kind=topics[lab?.querySelector('.cpp-flat-lesson h2')?.textContent.trim()],editor=lab?.querySelector('[data-role="lab-code"]');
+  const lab=stage.closest('.cpp-lab'),kind=topics[window.__ladoVH(lab)?.textContent.trim()],editor=lab?.querySelector('[data-role="lab-code"]');
   let scene=stage.querySelector('.cpp-op-scene');
   if(!kind||!editor) {scene?.remove();stage.classList.remove('has-op');return;}
   if(!scene||scene.dataset.kind!==kind) {scene?.remove();scene=document.createElement('section');scene.className='cpp-op-scene cpp-code-flow';scene.dataset.kind=kind;scene.steps=[];scene.index=-1;stage.appendChild(scene);}
   stage.classList.add('has-op');
   const opened=lab.querySelector('.cpp-guided-drawer')?.getAttribute('aria-hidden')!=='true';
   let redraw=false;
-  if(scene.editorCode!==editor.value) {
-    scene.editorCode=editor.value;
-    const state=modelCode(editor.value);let shared=0;
+  if(scene.editorCode!==window.__ladoCode(editor)) {
+    scene.editorCode=window.__ladoCode(editor);
+    const state=modelCode(window.__ladoCode(editor));let shared=0;
     while(shared<scene.steps.length&&shared<state.steps.length&&JSON.stringify(scene.steps[shared])===JSON.stringify(state.steps[shared]))shared++;
     if(shared<scene.steps.length||scene.index<0){scene.index=Math.min(shared,Math.max(0,state.steps.length-1));redraw=true;}
     scene.steps=state.steps;scene.vars=state.vars;scene.pending=null;

@@ -1,6 +1,6 @@
-import { StructWorld, CardMesh, CARD_W, setPath, deep } from './struct-world.js?v=20261014-cs-11';
-import { THREE, V, arc, plain, label, mat, clamp, lerp, inOut, outCubic, outBack, win } from './timed-world.js?v=20261014-cs-11';
-import { tex, redraw, rr, INK, MUTED, ACCESS } from './office-kit.js?v=20261014-cs-11';
+import { StructWorld, CardMesh, CARD_W, setPath, deep } from './struct-world.js?v=20261014-cs-18';
+import { THREE, V, arc, plain, label, mat, clamp, lerp, inOut, outCubic, outBack, win } from './timed-world.js?v=20261014-cs-18';
+import { tex, redraw, rr, INK, MUTED, ACCESS } from './office-kit.js?v=20261014-cs-18';
 
 // Classes: a housing estate. A class is a plan sheet; every object is a house built from it.
 // Private rooms are red and locked, public ones are green. Inherited rooms come from the parent plan.

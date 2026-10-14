@@ -1,4 +1,4 @@
-import { guided, warn, lesson, OWNERS } from './sql-common.js?v=20261014-cs-11';
+import { guided, warn, lesson, OWNERS } from './sql-common.js?v=20261014-cs-18';
 
 // Topic 4: two tables that belong together.
 const keyItems = [

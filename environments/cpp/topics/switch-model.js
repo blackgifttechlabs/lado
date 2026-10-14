@@ -1,5 +1,5 @@
-import { modelCode, inspectExpression } from './operator-model.js?v=20261014-cs-11';
-import { tokenize, matching, cleanCode, bodyOf, execute } from './branching-model.js?v=20261014-cs-11';
+import { modelCode, inspectExpression } from './operator-model.js?v=20261014-cs-18';
+import { tokenize, matching, cleanCode, bodyOf, execute } from './branching-model.js?v=20261014-cs-18';
 
 const clone=value=>JSON.parse(JSON.stringify(value));
 // Models one switch statement: which case the selector matches, which cases run (falling through until break), and the output.

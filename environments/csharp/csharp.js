@@ -1,11 +1,20 @@
 // csharp.js — C# sandbox exercise environment for LADO
-import { createWorkspace, applyTheme } from '../../shared-theme.js?v=20261014-cs-11';
-import basics from './topics/cs-basics.js?v=20261014-cs-11';
-import core from './topics/cs-core.js?v=20261014-cs-11';
-import apps from './topics/cs-apps.js?v=20261014-cs-11';
-import './topics/cs-scene.js?v=20261014-cs-11';
-import { runCsharp, runCsharpRaw } from './topics/cs-run.js?v=20261014-cs-11';
-import { PRACTICE } from './topics/cs-practice.js?v=20261014-cs-11';
+// The same live scenes as the C++ lessons (Blender boxes, loop machines, branching doors), fed with the C# code.
+import '../cpp/three/typing-flow.js?v=20261014-cs-18';
+import '../cpp/topics/branching-scene.js?v=20261014-cs-18';
+import '../cpp/topics/switch-scene.js?v=20261014-cs-18';
+import '../cpp/topics/loop-scene.js?v=20261014-cs-18';
+import '../cpp/topics/operator-scenes.js?v=20261014-cs-18';
+import { csToCpp } from './topics/cs-to-cpp.js?v=20261014-cs-18';
+import { createWorkspace, applyTheme } from '../../shared-theme.js?v=20261014-cs-18';
+import basics from './topics/cs-basics.js?v=20261014-cs-18';
+import core from './topics/cs-core.js?v=20261014-cs-18';
+import apps from './topics/cs-apps.js?v=20261014-cs-18';
+import './topics/cs-scene.js?v=20261014-cs-18';
+import { runCsharp, runCsharpRaw } from './topics/cs-run.js?v=20261014-cs-18';
+import { PRACTICE } from './topics/cs-practice.js?v=20261014-cs-18';
+
+window.__ladoCsToCpp = csToCpp;
 
 // The "Run code" button inside the lesson drawer.
 window.__ladoCsConsole = (code) => runCsharp(code);
@@ -13,6 +22,16 @@ window.__ladoCsConsole = (code) => runCsharp(code);
 window.__ladoCsRun = (code) => runCsharpRaw(code);
 
 const EXERCISES = [...basics, ...core, ...apps];
+// Which C++ lesson scene each C# topic borrows (topics without a match keep the C# pane).
+const VISUAL = {
+  'cs-topic-1': 'Declaring and Initializing Variables', 'cs-topic-2': 'Declaring and Initializing Variables', 'cs-topic-3': 'Logical Operators',
+  'cs-topic-4': 'Conditional Branching with if, else if, and else', 'cs-topic-5': 'Traditional for Loops', 'cs-topic-6': 'Working with Nested Loops',
+  'cs-topic-7': 'Declaring, Initializing, and Indexing Arrays', 'cs-topic-8': 'Working with Multidimensional Arrays', 'cs-topic-9': 'string and Its Member Functions',
+  'cs-topic-10': 'Function Declaration, Definition, and Calling', 'cs-topic-11': 'Function Parameters and Return Values', 'cs-topic-12': 'Recursive Functions',
+  'cs-topic-13': 'Class Data Members and Methods', 'cs-topic-18': 'Defining and Using struct Types', 'cs-topic-23': 'Class Inheritance', 'cs-topic-24': 'Static Data Members and Methods',
+};
+EXERCISES.forEach((topic) => topic.lesson.subtopics.forEach((subtopic) => { if (VISUAL[topic.id]) subtopic.visual = VISUAL[topic.id]; }));
+
 // Attach the practice challenges to every subtopic that has them.
 EXERCISES.forEach((topic) => topic.lesson.subtopics.forEach((subtopic) => {
   const practice = PRACTICE[subtopic.content?.heading];

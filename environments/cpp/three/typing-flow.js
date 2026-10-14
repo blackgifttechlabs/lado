@@ -1,4 +1,4 @@
-import { rigsReady, deposit3D, openBox3D, hover3D } from './physical-scene.js?v=20261014-cs-11';
+import { rigsReady, deposit3D, openBox3D, hover3D } from './physical-scene.js?v=20261014-cs-18';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const typePattern='(?:const\\s+)?(?:unsigned\\s+)?(?:int|short|long|float|double|char|bool|string|auto)';
 function inspect(code){
@@ -22,13 +22,14 @@ setInterval(()=>{
   if(!loaded)return;
   document.querySelectorAll('.cpp-visual-stage').forEach(stage=>{
     const lab=stage.closest('.cpp-lab'),editor=lab?.querySelector('[data-role="lab-code"]');if(!editor)return;
+    if(lab.dataset.lang==='csharp'&&lab.classList.contains('is-diy')){stage._typing3d?.node?.remove();stage.classList.remove('has-typing-three','has-aside');return;}
     let state=stage._typing3d;if(!state)state=stage._typing3d={code:null,pending:null,node:null,until:0};
-    if(state.until){if(performance.now()<state.until)return;state.until=0;state.node?.remove();state.node=null;state.pending=null;stage.classList.remove('has-typing-three');}
-    if(state.code===editor.value)return;const oldCode=state.code;state.code=editor.value;
-    const pending=inspect(editor.value);
+    if(state.until){if(performance.now()<state.until)return;state.until=0;state.node?.remove();state.node=null;state.pending=null;stage.classList.remove('has-typing-three','has-aside');}
+    if(state.code===window.__ladoCode(editor))return;const oldCode=state.code;state.code=window.__ladoCode(editor);
+    const pending=inspect(window.__ladoCode(editor));
     if(pending){
       if(!state.node)state.node=create(stage);
-      stage.classList.add('has-typing-three');
+      stage.classList.add('has-typing-three');stage.classList.toggle('has-aside',stage.querySelectorAll('.cpp-box-scene .cpp-box-slot').length>0);
       const node=state.node,host=node.querySelector('.cpp-flow-box'),cube=node.querySelector('.cpp-box-cube');
       node.querySelector('.cpp-flow-box-name').textContent=pending.name||'…';node.querySelector('.cpp-flow-box > small').textContent=pending.type;
       const chip=node.querySelector('.cpp-typing-value');chip.textContent=pending.value??'';chip.style.visibility=pending.value===null?'hidden':'visible';
@@ -41,14 +42,14 @@ setInterval(()=>{
     }
     if(state.pending&&state.node){
       const item=state.pending;
-      const committed=item.name&&item.value!==null&&new RegExp(`\\b${item.name}\\s*=\\s*${item.raw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}\\s*;`).test(editor.value);
+      const committed=item.name&&item.value!==null&&new RegExp(`\\b${item.name}\\s*=\\s*${item.raw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}\\s*;`).test(window.__ladoCode(editor));
       if(committed){
         const host=state.node.querySelector('.cpp-flow-box'),chip=state.node.querySelector('.cpp-typing-value');
         state.node.querySelector('.cpp-typing-phase').textContent='4 · ; — DROP, THEN CLOSE';
         state.node.querySelector('.cpp-flow-caption').textContent='The number passes through the opening and lands on the floor. The lid closes afterward.';
         stage._lastPhysicalCommit={name:item.name,value:item.value};
         openBox3D(host,-1000,1400);deposit3D(chip,host,100,1200);state.until=performance.now()+2350;
-      }else {state.node.remove();state.node=null;state.pending=null;stage.classList.remove('has-typing-three');}
+      }else {state.node.remove();state.node=null;state.pending=null;stage.classList.remove('has-typing-three','has-aside');}
     }
   });
 },60);

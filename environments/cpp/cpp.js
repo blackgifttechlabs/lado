@@ -1,21 +1,21 @@
-import "./three/typing-flow.js?v=20261014-cs-11";
-import "./topics/branching-scene.js?v=20261014-cs-11";
-import "./topics/switch-scene.js?v=20261014-cs-11";
-import "./topics/loop-scene.js?v=20261014-cs-11";
-import "./topics/operator-scenes.js?v=20261014-cs-11";
+import "./three/typing-flow.js?v=20261014-cs-18";
+import "./topics/branching-scene.js?v=20261014-cs-18";
+import "./topics/switch-scene.js?v=20261014-cs-18";
+import "./topics/loop-scene.js?v=20261014-cs-18";
+import "./topics/operator-scenes.js?v=20261014-cs-18";
 // cpp.js — C++ sandbox exercise environment for LADO
-import { createWorkspace, applyTheme } from "../../shared-theme.js?v=20261014-cs-11";
-import variablesTypes from "./topics/variables-types.js?v=20261014-cs-11";
-import operators from "./topics/operators.js?v=20261014-cs-11";
-import controlFlow from "./topics/control-flow.js?v=20261014-cs-11";
-import arraysStrings from "./topics/arrays-strings.js?v=20261014-cs-11";
-import functions from "./topics/functions.js?v=20261014-cs-11";
-import structures from "./topics/structures.js?v=20261014-cs-11";
-import classes from "./topics/classes.js?v=20261014-cs-11";
-import files from "./topics/files.js?v=20261014-cs-11";
-import { NOTES } from "./topics/notes.js?v=20261014-cs-11";
-import { PRACTICE } from "./topics/practice.js?v=20261014-cs-11";
-import { loopModel } from "./topics/loop-model.js?v=20261014-cs-11";
+import { createWorkspace, applyTheme } from "../../shared-theme.js?v=20261014-cs-18";
+import variablesTypes from "./topics/variables-types.js?v=20261014-cs-18";
+import operators from "./topics/operators.js?v=20261014-cs-18";
+import controlFlow from "./topics/control-flow.js?v=20261014-cs-18";
+import arraysStrings from "./topics/arrays-strings.js?v=20261014-cs-18";
+import functions from "./topics/functions.js?v=20261014-cs-18";
+import structures from "./topics/structures.js?v=20261014-cs-18";
+import classes from "./topics/classes.js?v=20261014-cs-18";
+import files from "./topics/files.js?v=20261014-cs-18";
+import { NOTES } from "./topics/notes.js?v=20261014-cs-18";
+import { PRACTICE } from "./topics/practice.js?v=20261014-cs-18";
+import { loopModel } from "./topics/loop-model.js?v=20261014-cs-18";
 
 // The Do it yourself / Debug checker (in shared-theme.js) runs the student's program through this interpreter.
 window.__ladoCppRun = (code) => loopModel(code);

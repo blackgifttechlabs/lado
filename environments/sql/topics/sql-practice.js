@@ -1,4 +1,4 @@
-import { PETS, PETS_EMPTY, SHOP, CLASS, OWNERS } from './sql-common.js?v=20261014-cs-11';
+import { PETS, PETS_EMPTY, SHOP, CLASS, OWNERS } from './sql-common.js?v=20261014-cs-18';
 
 // Do it yourself and Debug challenges for every SQL lesson, keyed by lesson heading.
 // setup = tables that already exist, check = a hidden query that shows what the learner's SQL did to the database.

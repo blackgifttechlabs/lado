@@ -1,7 +1,7 @@
 import * as THREE from '../vendor/three/three.module.js';
-import { World, OutputRig } from './loop-worlds.js?v=20261014-cs-11';
-import { label, mat, clamp, lerp, inOut, outCubic, outBack, win } from './loop-machine.js?v=20261014-cs-11';
-import { loopModel } from '../topics/loop-model.js?v=20261014-cs-11';
+import { World, OutputRig } from './loop-worlds.js?v=20261014-cs-18';
+import { label, mat, clamp, lerp, inOut, outCubic, outBack, win } from './loop-machine.js?v=20261014-cs-18';
+import { loopModel } from '../topics/loop-model.js?v=20261014-cs-18';
 
 // Functions as small machines. Deliberately sparse: the machine(s), the caller's variable crates, ONE moving block at a time,
 // and the output monitor in the lower half. Each call: values go into labelled ports, the machine works, the answer comes out.

@@ -42,6 +42,11 @@ export function restoreTheme(fallback = 'dark') {
   return applyTheme(stored || fallback);
 }
 
+// C# lessons borrow the C++ scenes: the C# code is rewritten as C++ for them, and data-visual names the C++ lesson to borrow.
+const csLooksLikeCs = text => /\bstatic\s+void\s+Main\b/.test(String(text));
+window.__ladoCsSrc = text => (window.__ladoCsToCpp && csLooksLikeCs(text) ? window.__ladoCsToCpp(text) : text);
+window.__ladoCode = el => window.__ladoCsSrc(el.value);
+window.__ladoVH = lab => { if (lab && lab.getAttribute('data-lang') === 'csharp' && lab.classList.contains('is-diy')) return null; const d = lab && lab.getAttribute('data-visual'); return d ? { textContent: d } : lab && lab.querySelector('.cpp-flat-lesson h2'); };
 export function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (ch) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -553,7 +558,7 @@ function renderSubtopicLab(exercise, subtopic, index) {
   const starter = cppStarterFor(subtopic);
   const practice = subtopic.content?.practice;
   return `
-    <div class="cpp-lab" data-role="cpp-lab" data-lang="${subtopic.lang || 'cpp'}"${practice ? ` data-practice="${escapeHtml(JSON.stringify(practice))}"` : ""}>
+    <div class="cpp-lab" data-role="cpp-lab" data-lang="${subtopic.lang || 'cpp'}" data-visual="${escapeHtml(subtopic.visual || '')}"${practice ? ` data-practice="${escapeHtml(JSON.stringify(practice))}"` : ""}>
       ${renderGuidedNotes(subtopic)}
       <button type="button" class="cpp-open-guided" data-role="open-guided">Try the code</button>
 
@@ -1252,6 +1257,7 @@ export function createWorkspace(container, config) {
   }
 
   function parse(src) {
+    src = window.__ladoCsSrc(src);
     var out = [], by = {};
 
     function declare(type, rest, closed) {
@@ -1916,6 +1922,7 @@ export function createWorkspace(container, config) {
     try { var n = Function('return (' + s + ')')(); return typeof n === 'number' ? n : null; } catch (_) { return null; }
   }
   function parse(code) {
+    code = window.__ladoCsSrc(code);
     var clean = code
       .replace(/\/\*[\s\S]*?\*\//g, '')
       .replace(/\/\/.*$/gm, '')
@@ -1946,7 +1953,7 @@ export function createWorkspace(container, config) {
     return {vars:vars,comparisons:comparisons,pending:pending};
   }
   function update(stage,lab,ta) {
-    var h=lab.querySelector('.cpp-flat-lesson h2');
+    var h = window.__ladoVH(lab);
     if (!h || !/Comparison Operators/.test(h.textContent)) { stage.classList.remove('has-cmp'); var old=stage.querySelector('.cpp-cmp-scene'); if(old)old.remove(); return; }
     guide(lab,ta);
     var state=parse(ta.value), comparisons=state.comparisons, scene=stage.querySelector('.cpp-cmp-scene'), status=stage.querySelector('.cpp-visual-status');
@@ -2568,6 +2575,7 @@ function splitTop(s) {
   var BOXC = '<div class="cpp-box-cube"><i class="f front"><b class="cpp-box-val"></b></i><i class="f back"></i><i class="f left"></i><i class="f right"></i><i class="f bottom"></i><div class="cpp-lid"><i class="lid-face"></i></div><div class="cpp-item"><span></span></div><div class="cpp-padlock"><span class="cpp-shackle"></span><span class="cpp-lockbody"></span></div></div><div class="cpp-box-label"></div><div class="cpp-crate-try"><span></span></div><div class="cpp-crate-err"></div>';
 
   function parse(src) {
+    src = window.__ladoCsSrc(src);
     var code = src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '').replace(/^\s*#.*$/gm, '');
     var mi = code.search(/\bmain\s*\([^)]*\)\s*\{/);
     if (mi >= 0) code = code.slice(mi).replace(/^[^{]*\{/, '');
@@ -2802,6 +2810,7 @@ function splitTop(s) {
   }
 
   function parse(src) {
+    src = window.__ladoCsSrc(src);
     var code = src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '').replace(/^\s*#.*$/gm, '');
     var mi = code.search(/\bmain\s*\([^)]*\)\s*\{/);
     if (mi >= 0) code = code.slice(mi).replace(/^[^{]*\{/, '');
@@ -3063,6 +3072,7 @@ function splitTop(s) {
       + '<div class="cpp-fn-tag">' + esc(tag) + '</div></div>';
   }
   function parse(src) {
+    src = window.__ladoCsSrc(src);
     var code = src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '').replace(/^\s*#.*$/gm, '');
     var mi = code.search(/\bmain\s*\([^)]*\)\s*\{/);
     if (mi >= 0) code = code.slice(mi).replace(/^[^{]*\{/, '');
@@ -3081,7 +3091,7 @@ function splitTop(s) {
     return out;
   }
   function update(stage, lab, ta) {
-    var h = lab.querySelector('.cpp-flat-lesson h2');
+    var h = window.__ladoVH(lab);
     var lanes = (h && /Type Conversion/.test(h.textContent)) ? parse(ta.value) : [];
     var sc = stage.querySelector('.cpp-fn-scene');
     var status = stage.querySelector('.cpp-visual-status');
@@ -3121,6 +3131,7 @@ function splitTop(s) {
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
   function parse(src) {
+    src = window.__ladoCsSrc(src);
     var code = src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '').replace(/^\s*#.*$/gm, '');
     var mi = code.search(/\bmain\s*\([^)]*\)\s*\{/);
     if (mi >= 0) code = code.slice(mi).replace(/^[^{]*\{/, '');
@@ -3202,7 +3213,7 @@ function splitTop(s) {
   }
 
   function update(stage, lab, ta) {
-    var h = lab.querySelector('.cpp-flat-lesson h2');
+    var h = window.__ladoVH(lab);
     var scopes = (h && /Scope and Lifetime/.test(h.textContent)) ? parse(ta.value) : null;
     var sc = stage.querySelector('.cpp-sc-scene');
     var status = stage.querySelector('.cpp-visual-status');
@@ -3325,6 +3336,7 @@ function splitTop(s) {
     return { html: html, jam: bad, hist: name + ' = ' + lval + ' ' + SYM[o] + ' ' + rval + ' = ' + (bad ? 'JAM' : fmt(fin, T)) };
   }
   function parse(src) {
+    src = window.__ladoCsSrc(src);
     var code = src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '').replace(/^\s*#.*$/gm, '');
     var mi = code.search(/\bmain\s*\([^)]*\)\s*\{/);
     if (mi >= 0) code = code.slice(mi).replace(/^[^{]*\{/, '');
@@ -3349,7 +3361,7 @@ function splitTop(s) {
     return out;
   }
   function update(stage, lab, ta) {
-    var h = lab.querySelector('.cpp-flat-lesson h2');
+    var h = window.__ladoVH(lab);
     var ops = (h && /Arithmetic Operators/.test(h.textContent)) ? parse(ta.value) : [];
     var sc = stage.querySelector('.cpp-ar-scene');
     var status = stage.querySelector('.cpp-visual-status');
@@ -3411,6 +3423,7 @@ function splitTop(s) {
     try { var v = Function('return (' + s + ')')(); return typeof v === 'number' ? v : null; } catch (e) { return null; }
   }
   function parse(src) {
+    src = window.__ladoCsSrc(src);
     var code = src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '').replace(/^\s*#.*$/gm, '');
     var mi = code.search(/\bmain\s*\([^)]*\)\s*\{/);
     if (mi >= 0) code = code.slice(mi).replace(/^[^{]*\{/, '');
@@ -3507,7 +3520,7 @@ function splitTop(s) {
       + '<div class="cpp-as-tag">Type ; to put ' + esc(fmt(val, T)) + ' inside the ' + esc(name) + ' box</div></div></div>';
   }
   function update(stage, lab, ta) {
-    var h = lab.querySelector('.cpp-flat-lesson h2');
+    var h = window.__ladoVH(lab);
     var P = (h && /Assignment and Compound Assignment/.test(h.textContent)) ? parse(ta.value) : null;
     var sc = stage.querySelector('.cpp-as-scene');
     var status = stage.querySelector('.cpp-visual-status');
