@@ -1,5 +1,5 @@
-import { PETS, SHOP, CLASS, OWNERS } from './sql-common.js?v=20261014-cs-18';
-import { sqlModel, assemble } from './sql-model.js?v=20261014-cs-18';
+import { PETS, SHOP, CLASS, OWNERS } from './sql-common.js?v=20261015-m-1';
+import { sqlModel, assemble } from './sql-model.js?v=20261015-m-1';
 
 // Challenges for Reading Data, Summaries and Joins. The expected answer is worked out by running the model solution.
 const expectOf = (solution, setup, check) => { const r = sqlModel(assemble(setup, '-- YOUR TURN\n' + solution), { check }); return r.error ? `!! ${r.error}` : r.output; };

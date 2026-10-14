@@ -1,4 +1,4 @@
-import { guided, warn, lesson, PETS, SHOP, CLASS } from './sql-common.js?v=20261014-cs-18';
+import { guided, warn, lesson, PETS, SHOP, CLASS } from './sql-common.js?v=20261015-m-1';
 
 // Topic 2: asking a table questions with SELECT.
 const allItems = [

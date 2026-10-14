@@ -1,4 +1,4 @@
-import { guided, warn, lesson, PETS, SHOP, CLASS } from './sql-common.js?v=20261014-cs-18';
+import { guided, warn, lesson, PETS, SHOP, CLASS } from './sql-common.js?v=20261015-m-1';
 
 // Topic 3: adding things up. Many rows become one answer.
 const PETS_NULL = PETS + `\nINSERT INTO pets (name, kind, age) VALUES ('Zed', NULL, 4);`;

@@ -1,5 +1,5 @@
 import * as THREE from '../vendor/three/three.module.js';
-import { LoopMachine, label, environment, mat, clamp, lerp, inOut, outCubic, outBack, win, nextAngle, STATION, R, DEG } from './loop-machine.js?v=20261014-cs-18';
+import { LoopMachine, label, environment, mat, clamp, lerp, inOut, outCubic, outBack, win, nextAngle, STATION, R, DEG } from './loop-machine.js?v=20261015-m-1';
 
 // Other loop lessons, each with its own physical concept, sharing one timed-step engine (travel, then a reaction).
 const REACT={stmt:1000,error:1600,init:900,check:1400,body:800,print:2700,continue:800,update:900,item:1000,exit:1100,break:1000,limit:900};

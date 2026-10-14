@@ -1,4 +1,4 @@
-import { runCsharp } from './cs-run.js?v=20261014-cs-18';
+import { runCsharp } from './cs-run.js?v=20261015-m-1';
 
 // Do it yourself scene. Every token typed adds one more part to a detailed build. A mistake makes only the newest part slip and fall.
 const R = (x, y, w, h, f, rx = 1, extra = '') => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" fill="${f}" ${extra}/>`;

@@ -1,14 +1,14 @@
 // sql.js — SQL learning environment for LADO: the same lesson flow as C++, with its own 3D database scenes.
-import { createWorkspace, applyTheme, escapeHtml } from '../../shared-theme.js?v=20261014-cs-18';
-import './topics/sql-scene.js?v=20261014-cs-18';
-import tablesData from './topics/tables-data.js?v=20261014-cs-18';
-import readingData from './topics/reading-data.js?v=20261014-cs-18';
-import summaries from './topics/summaries.js?v=20261014-cs-18';
-import joins from './topics/joins.js?v=20261014-cs-18';
-import { PRACTICE as PRACTICE1 } from './topics/sql-practice.js?v=20261014-cs-18';
-import { PRACTICE2 } from './topics/sql-practice-2.js?v=20261014-cs-18';
+import { createWorkspace, applyTheme, escapeHtml } from '../../shared-theme.js?v=20261015-m-1';
+import './topics/sql-scene.js?v=20261015-m-1';
+import tablesData from './topics/tables-data.js?v=20261015-m-1';
+import readingData from './topics/reading-data.js?v=20261015-m-1';
+import summaries from './topics/summaries.js?v=20261015-m-1';
+import joins from './topics/joins.js?v=20261015-m-1';
+import { PRACTICE as PRACTICE1 } from './topics/sql-practice.js?v=20261015-m-1';
+import { PRACTICE2 } from './topics/sql-practice-2.js?v=20261015-m-1';
 const PRACTICE = { ...PRACTICE1, ...PRACTICE2 };
-import { sqlModel, assemble, renderResult } from './topics/sql-model.js?v=20261014-cs-18';
+import { sqlModel, assemble, renderResult } from './topics/sql-model.js?v=20261015-m-1';
 
 // The Do it yourself / Debug checker (in shared-theme.js) runs the learner's SQL through this engine.
 window.__ladoSqlRun = (code, challenge) => {

@@ -1,18 +1,18 @@
 // csharp.js — C# sandbox exercise environment for LADO
 // The same live scenes as the C++ lessons (Blender boxes, loop machines, branching doors), fed with the C# code.
-import '../cpp/three/typing-flow.js?v=20261014-cs-18';
-import '../cpp/topics/branching-scene.js?v=20261014-cs-18';
-import '../cpp/topics/switch-scene.js?v=20261014-cs-18';
-import '../cpp/topics/loop-scene.js?v=20261014-cs-18';
-import '../cpp/topics/operator-scenes.js?v=20261014-cs-18';
-import { csToCpp } from './topics/cs-to-cpp.js?v=20261014-cs-18';
-import { createWorkspace, applyTheme } from '../../shared-theme.js?v=20261014-cs-18';
-import basics from './topics/cs-basics.js?v=20261014-cs-18';
-import core from './topics/cs-core.js?v=20261014-cs-18';
-import apps from './topics/cs-apps.js?v=20261014-cs-18';
-import './topics/cs-scene.js?v=20261014-cs-18';
-import { runCsharp, runCsharpRaw } from './topics/cs-run.js?v=20261014-cs-18';
-import { PRACTICE } from './topics/cs-practice.js?v=20261014-cs-18';
+import '../cpp/three/typing-flow.js?v=20261015-m-1';
+import '../cpp/topics/branching-scene.js?v=20261015-m-1';
+import '../cpp/topics/switch-scene.js?v=20261015-m-1';
+import '../cpp/topics/loop-scene.js?v=20261015-m-1';
+import '../cpp/topics/operator-scenes.js?v=20261015-m-1';
+import { csToCpp } from './topics/cs-to-cpp.js?v=20261015-m-1';
+import { createWorkspace, applyTheme } from '../../shared-theme.js?v=20261015-m-1';
+import basics from './topics/cs-basics.js?v=20261015-m-1';
+import core from './topics/cs-core.js?v=20261015-m-1';
+import apps from './topics/cs-apps.js?v=20261015-m-1';
+import './topics/cs-scene.js?v=20261015-m-1';
+import { runCsharp, runCsharpRaw } from './topics/cs-run.js?v=20261015-m-1';
+import { PRACTICE } from './topics/cs-practice.js?v=20261015-m-1';
 
 window.__ladoCsToCpp = csToCpp;
 

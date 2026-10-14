@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#0b1020">
     <title>LADO — Learn C++, C# & SQL</title>
-    <link rel="stylesheet" href="./environments/fonts/lado-mono.css?v=20261014-cs-11">
-    <link rel="stylesheet" href="./environments/cpp/cpp.css?v=20261014-cs-11">
-    <link rel="stylesheet" href="./environments/cpp/topics/variables-types.css?v=20261014-cs-11">
-    <link rel="stylesheet" href="./environments/cpp/topics/operators.css?v=20261014-cs-11">
-    <link rel="stylesheet" href="./environments/cpp/topics/control-flow.css?v=20261014-cs-11">
-    <link rel="stylesheet" href="./environments/cpp/topics/notes.css?v=20261014-cs-11">
-    <link rel="stylesheet" href="./environments/cpp/topics/arrays-strings.css?v=20261014-cs-11">
-    <link rel="stylesheet" href="./environments/cpp/topics/functions.css?v=20261014-cs-11">
-    <link rel="stylesheet" href="./environments/cpp/topics/structures.css?v=20261014-cs-11">
-    <link rel="stylesheet" href="./environments/cpp/topics/classes.css?v=20261014-cs-11">
-    <link rel="stylesheet" href="./environments/cpp/topics/files.css?v=20261014-cs-11">
-    <link rel="stylesheet" href="./environments/sql/topics/sql.css?v=20261014-cs-11">
-    <link rel="stylesheet" href="./environments/csharp/cs.css?v=20261014-cs-11">
-    <link rel="stylesheet" href="./environments/cpp/three/physical-scene.css?v=20261014-cs-11">
+    <link rel="stylesheet" href="./environments/fonts/lado-mono.css?v=20261015-m-1">
+    <link rel="stylesheet" href="./environments/cpp/cpp.css?v=20261015-m-1">
+    <link rel="stylesheet" href="./environments/cpp/topics/variables-types.css?v=20261015-m-1">
+    <link rel="stylesheet" href="./environments/cpp/topics/operators.css?v=20261015-m-1">
+    <link rel="stylesheet" href="./environments/cpp/topics/control-flow.css?v=20261015-m-1">
+    <link rel="stylesheet" href="./environments/cpp/topics/notes.css?v=20261015-m-1">
+    <link rel="stylesheet" href="./environments/cpp/topics/arrays-strings.css?v=20261015-m-1">
+    <link rel="stylesheet" href="./environments/cpp/topics/functions.css?v=20261015-m-1">
+    <link rel="stylesheet" href="./environments/cpp/topics/structures.css?v=20261015-m-1">
+    <link rel="stylesheet" href="./environments/cpp/topics/classes.css?v=20261015-m-1">
+    <link rel="stylesheet" href="./environments/cpp/topics/files.css?v=20261015-m-1">
+    <link rel="stylesheet" href="./environments/sql/topics/sql.css?v=20261015-m-1">
+    <link rel="stylesheet" href="./mobile.css?v=20261015-m-1">
+    <link rel="stylesheet" href="./environments/csharp/cs.css?v=20261015-m-1">
+    <link rel="stylesheet" href="./environments/cpp/three/physical-scene.css?v=20261015-m-1">
     <style>
         /* =========================================
            1. APPLE THEME VARIABLEN
@@ -483,13 +487,13 @@
     </nav>
 
     <script type="module">
-        import { restoreTheme, toggleTheme, getTheme } from './shared-theme.js?v=20261014-cs-11';
+        import { restoreTheme, toggleTheme, getTheme } from './shared-theme.js?v=20261015-m-1';
 
         // Jede Umgebung wird erst beim Öffnen geladen (code splitting).
         const ENVIRONMENTS = {
-            cpp:    { load: () => import('./environments/cpp/cpp.js?v=20261014-cs-11'),       init: 'initCppEnvironment' },
-            csharp: { load: () => import('./environments/csharp/csharp.js?v=20261014-cs-11'), init: 'initCsharpEnvironment' },
-            sql:    { load: () => import('./environments/sql/sql.js?v=20261014-cs-11'),       init: 'initSqlEnvironment' },
+            cpp:    { load: () => import('./environments/cpp/cpp.js?v=20261015-m-1'),       init: 'initCppEnvironment' },
+            csharp: { load: () => import('./environments/csharp/csharp.js?v=20261015-m-1'), init: 'initCsharpEnvironment' },
+            sql:    { load: () => import('./environments/sql/sql.js?v=20261015-m-1'),       init: 'initSqlEnvironment' },
         };
 
         restoreTheme('dark');

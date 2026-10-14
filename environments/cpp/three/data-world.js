@@ -1,7 +1,7 @@
 import * as THREE from '../vendor/three/three.module.js';
-import { World, OutputRig } from './loop-worlds.js?v=20261014-cs-18';
-import { label, mat, clamp, lerp, inOut, outCubic, outBack, win } from './loop-machine.js?v=20261014-cs-18';
-import { loopModel } from '../topics/loop-model.js?v=20261014-cs-18';
+import { World, OutputRig } from './loop-worlds.js?v=20261015-m-1';
+import { label, mat, clamp, lerp, inOut, outCubic, outBack, win } from './loop-machine.js?v=20261015-m-1';
+import { loopModel } from '../topics/loop-model.js?v=20261015-m-1';
 
 // Arrays and strings as physical things: lockers (arrays), an apartment block (2D arrays), letter tiles (strings and C-strings).
 // Every statement's events (read, write, size, find, insert, erase...) drive a matching physical action.

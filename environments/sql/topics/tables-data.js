@@ -1,4 +1,4 @@
-import { guided, warn, lesson, PETS, PETS_EMPTY } from './sql-common.js?v=20261014-cs-18';
+import { guided, warn, lesson, PETS, PETS_EMPTY } from './sql-common.js?v=20261015-m-1';
 
 // Topic 1: building tables and changing the data inside them.
 const createItems = [

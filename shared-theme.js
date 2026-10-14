@@ -655,6 +655,7 @@ export function createWorkspace(container, config) {
   container.innerHTML = `
     <div class="lado-ws">
       <header class="lado-ws-header">
+        <button type="button" class="lado-icon-btn lado-mobile-menu" data-role="toggle-sidebar" aria-label="Lessons menu" title="Lessons">${ICONS.sidebar}</button>
         <div class="lado-ws-title">
           <h1>${escapeHtml(title)}</h1>
           <span class="lado-ws-sub">${escapeHtml(subtitle)}</span>
@@ -725,6 +726,11 @@ export function createWorkspace(container, config) {
   });
   const $ = (role) => container.querySelector(`[data-role="${role}"]`);
   const shell = $('shell');
+  // Phones: the lesson list is a slide-in menu that starts closed and closes again after a lesson is picked.
+  const phone = window.matchMedia('(max-width: 700px)');
+  if (phone.matches) shell.classList.add('is-sidebar-collapsed');
+  shell.addEventListener('click', (event) => { if (event.target === shell && phone.matches) shell.classList.add('is-sidebar-collapsed'); });
+  root.addEventListener('click', (event) => { if (phone.matches && event.target.closest('.lado-ws-sidebar .lado-node[data-node]')) setTimeout(() => shell.classList.add('is-sidebar-collapsed'), 60); });
   const codeEl = $('code');
   const outputEl = $('output');
   const messagesEl = $('messages');

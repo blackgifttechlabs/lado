@@ -1,4 +1,4 @@
-import { switchModel } from './switch-model.js?v=20261014-cs-18';
+import { switchModel } from './switch-model.js?v=20261015-m-1';
 const title='Multi-way Branching with switch';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const valueText=value=>value===undefined?'':typeof value==='string'?`"${value}"`:String(value);

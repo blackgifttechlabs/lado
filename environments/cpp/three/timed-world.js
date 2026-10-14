@@ -1,6 +1,6 @@
 import * as THREE from '../vendor/three/three.module.js';
-import { World } from './loop-worlds.js?v=20261014-cs-18';
-import { label, mat, clamp, lerp, inOut, outCubic, outBack, win } from './loop-machine.js?v=20261014-cs-18';
+import { World } from './loop-worlds.js?v=20261015-m-1';
+import { label, mat, clamp, lerp, inOut, outCubic, outBack, win } from './loop-machine.js?v=20261015-m-1';
 
 // Base for the object-oriented scenes: every event of a statement becomes a small timed task, run one after another.
 export const V=(x=0,y=0,z=0)=>new THREE.Vector3(x,y,z);

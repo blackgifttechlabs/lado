@@ -1,5 +1,5 @@
-import { loopModel } from './loop-model.js?v=20261014-cs-18';
-import { createWorld } from '../three/scenes3d.js?v=20261014-cs-18';
+import { loopModel } from './loop-model.js?v=20261015-m-1';
+import { createWorld } from '../three/scenes3d.js?v=20261015-m-1';
 
 // One replay scene for every loop lesson: variable boxes, a lesson-specific track, and the terminal, stepped frame by frame.
 const MODES={

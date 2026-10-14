@@ -1,4 +1,4 @@
-import { cleanCode, bodyOf } from './branching-model.js?v=20261014-cs-18';
+import { cleanCode, bodyOf } from './branching-model.js?v=20261015-m-1';
 
 // A bounded C++ teaching interpreter for loop lessons. It records a frame for every loop step so a scene can replay them.
 const MAX_LAPS=200,TYPES=new Set(['int','double','float','char','bool','string','std::string','auto','unsigned','long','short','size_t','void','ostream','istream','ifstream','ofstream','fstream','stringstream','istringstream','ostringstream']);

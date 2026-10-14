@@ -1,4 +1,4 @@
-import { rigsReady, deposit3D, openBox3D, hover3D } from './physical-scene.js?v=20261014-cs-18';
+import { rigsReady, deposit3D, openBox3D, hover3D } from './physical-scene.js?v=20261015-m-1';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const typePattern='(?:const\\s+)?(?:unsigned\\s+)?(?:int|short|long|float|double|char|bool|string|auto)';
 function inspect(code){

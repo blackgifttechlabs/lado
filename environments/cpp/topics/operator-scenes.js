@@ -1,7 +1,7 @@
-import { rigsReady, deposit3D, withdraw3D, openBox3D } from '../three/physical-scene.js?v=20261014-cs-18';
-import { logicalScene, bitwiseScene, bitwiseDuration, animateLogic, animateBitwise } from './operator-phases.js?v=20261014-cs-18';
-import { modelCode } from './operator-model.js?v=20261014-cs-18';
-import { precedenceScene, precedencePlan, animatePrecedence } from './precedence-scene.js?v=20261014-cs-18';
+import { rigsReady, deposit3D, withdraw3D, openBox3D } from '../three/physical-scene.js?v=20261015-m-1';
+import { logicalScene, bitwiseScene, bitwiseDuration, animateLogic, animateBitwise } from './operator-phases.js?v=20261015-m-1';
+import { modelCode } from './operator-model.js?v=20261015-m-1';
+import { precedenceScene, precedencePlan, animatePrecedence } from './precedence-scene.js?v=20261015-m-1';
 
 const esc = value => String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const topics = {'Logical Operators':'logical','Bitwise Operators':'bitwise','Increment and Decrement Operators':'increment','Conditional Ternary Operator':'ternary','Operator Precedence and Evaluation Order':'precedence'};

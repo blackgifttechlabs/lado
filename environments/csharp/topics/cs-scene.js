@@ -1,5 +1,5 @@
-import { runCsharp, traceCsharp } from './cs-run.js?v=20261014-cs-18';
-import { syncDiy } from './cs-diy-scene.js?v=20261014-cs-18';
+import { runCsharp, traceCsharp } from './cs-run.js?v=20261015-m-1';
+import { syncDiy } from './cs-diy-scene.js?v=20261015-m-1';
 
 // Guided scene: the program is replayed one statement at a time. Your variables are boxes that change value,
 // and the terminal below prints the output as it happens.

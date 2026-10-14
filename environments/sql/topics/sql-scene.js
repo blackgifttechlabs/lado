@@ -1,5 +1,5 @@
-import { sqlModel, assemble } from './sql-model.js?v=20261014-cs-18';
-import { createSqlWorld } from '../three/sql-world.js?v=20261014-cs-18';
+import { sqlModel, assemble } from './sql-model.js?v=20261015-m-1';
+import { createSqlWorld } from '../three/sql-world.js?v=20261015-m-1';
 
 // Replays a SQL lesson: the 3D world above, the computer (result screen) below, the controls underneath.
 const esc = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
