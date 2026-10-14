@@ -1,0 +1,16 @@
+<!doctype html><meta charset="utf-8"><title>Font check</title>
+<link rel="stylesheet" href="../environments/fonts/lado-mono.css?v=check">
+<style>body{background:#111;color:#eee;font:16px sans-serif;padding:24px} p{margin:6px 0} code{font-size:20px} #log{white-space:pre;margin-top:20px;color:#9f9}</style>
+<h2>Which code font does this browser use?</h2>
+<p><code style="font-family:'LadoMono'">LadoMono: static void Main() { i++ } WWWiii</code></p>
+<p><code style="font-family:'DejaVu Sans Mono'">DejaVu Sans Mono: static void Main() { i++ } WWWiii</code></p>
+<p><code style="font-family:'Liberation Mono'">Liberation Mono: static void Main() { i++ } WWWiii</code></p>
+<p><code style="font-family:Menlo">Menlo: static void Main() { i++ } WWWiii</code></p>
+<p><code style="font-family:Consolas">Consolas: static void Main() { i++ } WWWiii</code></p>
+<p><code style="font-family:monospace">monospace: static void Main() { i++ } WWWiii</code></p>
+<div id="log">loading…</div>
+<script>
+(async()=>{let o='';try{await document.fonts.load('16px LadoMono');o+='LadoMono loaded: '+document.fonts.check('16px LadoMono')+'\n';}catch(e){o+='LadoMono FAILED: '+e+'\n';}
+const r=await fetch('../environments/fonts/DejaVuSansMono.ttf');o+='font file HTTP '+r.status+' '+r.headers.get('content-type')+'\n';
+o+='UA: '+navigator.userAgent;document.getElementById('log').textContent=o;})();
+</script>

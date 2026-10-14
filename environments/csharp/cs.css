@@ -1,0 +1,39 @@
+#page-inner .cpp-loop-scene.is-cs { overflow: auto; align-items: center; background: linear-gradient(135deg, #1f2a6b, #3a1f6b); border-radius: 12px; }
+#page-inner .cpp-loop-scene.is-cs { padding: 12px; gap: 10px; align-items: stretch; overflow: hidden; }
+.cs-banner { flex: none; margin: 0; padding: 8px 14px; border-radius: 10px; background: rgba(255, 255, 255, .12); color: #fff; font: 700 13px sans-serif; text-align: center; min-height: 18px; transition: background .3s; }
+.cs-banner.is-set { background: rgba(47, 224, 141, .3); } .cs-banner.is-print { background: rgba(255, 210, 74, .28); } .cs-banner.is-start { background: rgba(91, 141, 239, .35); }
+.cs-vars { flex: 1 1 auto; min-height: 90px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-content: center; overflow: auto; }
+.cs-var { display: grid; gap: 3px; min-width: 104px; max-width: 260px; padding: 10px 16px; text-align: center; border-radius: 14px; background: linear-gradient(#fff, #e8efff); color: #16303f; border: 2px solid #5b8def; box-shadow: 0 6px 16px #0005; }
+.cs-var.is-born { animation: cs-pop .4s cubic-bezier(.2, 1.5, .4, 1); }
+.cs-var small { font: 700 10px/1 "LadoMono", "DejaVu Sans Mono", monospace; color: #5b8def; text-transform: uppercase; }
+.cs-var b { font: 800 15px "LadoMono", "DejaVu Sans Mono", monospace; }
+.cs-var span { font: 700 15px "LadoMono", "DejaVu Sans Mono", monospace; color: #1f8f57; overflow-wrap: anywhere; }
+.cs-var span.is-new { animation: cs-flip .5s ease; }
+.cs-empty { margin: auto; color: #cfd8ff; font-size: 13px; text-align: center; }
+.cs-term { flex: none; height: 34%; min-height: 110px; border-radius: 10px; overflow: hidden; }
+.cs-controls { flex: none; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.cs-controls button { border: 0; border-radius: 999px; padding: 6px 16px; font: 700 13px sans-serif; color: #fff; background: rgba(255, 255, 255, .18); cursor: pointer; }
+.cs-controls button:hover { background: rgba(255, 255, 255, .3); }
+.cs-controls small { color: #cfd8ff; font-size: 12px; }
+@keyframes cs-pop { from { opacity: 0; transform: translateY(10px) scale(.85); } to { opacity: 1; transform: none; } }
+@keyframes cs-flip { 0% { transform: scale(1.6); color: #ff9d1f; } 100% { transform: none; } }
+
+/* ---- Do it yourself: the build scene and the terminal ---- */
+#page-inner .cpp-loop-scene.is-csd { padding: 0; gap: 0; overflow: hidden; background: #070a1a; border-radius: 12px; }
+.csd-stage { position: relative; flex: 1 1 auto; min-height: 0; display: flex; }
+.csd-svg { width: 100%; height: 100%; display: block; }
+.csd-say { position: absolute; left: 12px; right: 12px; top: 10px; margin: 0; text-align: center; font: 700 13px sans-serif; color: #dbe4ff; text-shadow: 0 1px 4px #000; }
+.csd-say[data-tone="bad"] { color: #ff9b9b; } .csd-say[data-tone="good"] { color: #7dffb4; }
+.csd-piece { opacity: 0; transform: translateY(-26px); transform-box: fill-box; transform-origin: 50% 100%; transition: opacity .3s ease, transform .45s cubic-bezier(.2, 1.5, .4, 1); }
+.csd-piece.on { opacity: 1; transform: none; }
+.csd-piece.is-wobble { animation: csd-wobble .5s ease-in-out infinite; }
+.csd-piece.is-fell { transform: translate(10px, 14px) rotate(24deg); filter: drop-shadow(0 0 3px #ff5a5a); transition: transform .8s cubic-bezier(.5, 0, 1, .7); }
+.csd-flag { opacity: 0; transition: opacity .3s; } .is-done .csd-flag { opacity: 1; }
+.csd-term { flex: none; height: 38%; min-height: 120px; display: flex; flex-direction: column; background: #0b0f14; border-top: 2px solid #2a3340; }
+.csd-term-bar { display: flex; align-items: center; gap: 6px; padding: 5px 10px; background: #161c25; font: 700 11px "LadoMono", "DejaVu Sans Mono", monospace; color: #8b97a8; }
+.csd-term-bar i { width: 9px; height: 9px; border-radius: 50%; background: #ff5f57; } .csd-term-bar i:nth-child(2) { background: #febc2e; } .csd-term-bar i:nth-child(3) { background: #28c840; }
+.csd-term-out { flex: 1; margin: 0; padding: 10px 14px; overflow: auto; white-space: pre-wrap; font: 13px/1.55 "LadoMono", "DejaVu Sans Mono", monospace; color: #9dffb0; }
+.csd-p { color: #6aa9ff; } .csd-bad { color: #ff7b7b; } .csd-dim { color: #9aa7b8; }
+.csd-cur { display: inline-block; width: 8px; height: 14px; margin-left: 2px; vertical-align: -2px; background: #9dffb0; animation: csd-blink 1s steps(2) infinite; }
+@keyframes csd-wobble { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(3deg) translateY(1px); } }
+@keyframes csd-blink { 50% { opacity: 0; } }

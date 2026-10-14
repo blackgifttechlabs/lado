@@ -1,0 +1,21 @@
+<!doctype html><meta charset="utf-8"><title>Guided scene preview</title>
+<link rel="stylesheet" href="../environments/fonts/lado-mono.css"><link rel="stylesheet" href="../environments/cpp/topics/control-flow.css"><link rel="stylesheet" href="../environments/sql/topics/sql.css"><link rel="stylesheet" href="../environments/csharp/cs.css">
+<style>body{background:#111;margin:0}.cpp-visual-stage{position:relative;width:560px;height:520px;margin:10px;background:#0b3b8f;border-radius:12px}.cpp-visual-toolbar{height:36px}</style>
+<div id="page-inner"><div class="cpp-lab" data-lang="csharp"><div class="cpp-guided-drawer" aria-hidden="false"><section class="cpp-visual-stage"><div class="cpp-visual-toolbar"></div></section></div>
+<textarea data-role="lab-code" style="display:none">using System;
+
+class Program
+{
+    static void Main()
+    {
+        int x = 5;
+        string name = "Lado";
+        int[] marks = { 4, 9 };
+        for (int i = 1; i &lt;= 3; i++)
+        {
+            x += i;
+            Console.WriteLine(name + " " + x);
+        }
+    }
+}</textarea></div></div>
+<script type="module">import '../environments/csharp/topics/cs-scene.js';</script>

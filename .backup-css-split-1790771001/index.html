@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LADO — Learn C++, C# & SQL</title>
+    <link rel="stylesheet" href="./environments/cpp/cpp.css?v=1790686500">
+    <style>
+        /* =========================================
+           1. APPLE THEME VARIABLEN
+           ========================================= */
+        :root {
+            /* Hintergrund & Ambient Light Blobs */
+            --bg-color: #e5e5ea;
+            --blob-1: #ff2a5f;
+            --blob-2: #007aff;
+            --blob-3: #ff9500;
+            --blob-opacity: 0.7;
+
+            /* Echtes Liquid Glass - Light Mode */
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --glass-shadow: rgba(0, 0, 0, 0.1);
+            --glass-highlight: rgba(255, 255, 255, 0.8);
+            --glass-caustic: rgba(255, 255, 255, 0.4);
+            --reflection-start: rgba(255, 255, 255, 0.6);
+            --reflection-end: rgba(255, 255, 255, 0.0);
+            --glare-color: rgba(255, 255, 255, 0.5);
+
+            /* Slider Pill & Icons */
+            --pill-bg: rgba(255, 255, 255, 0.7);
+            --pill-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05), inset 0 1px 1px rgba(255,255,255,0.8);
+            --icon-color: rgba(0, 0, 0, 0.5);
+            --icon-active: rgba(0, 0, 0, 0.95);
+            --divider: rgba(0, 0, 0, 0.15);
+
+            /* Solide Fläche hinter den Lernumgebungen */
+            --app-bg: #f2f2f7;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #000000;
+            --blob-1: #bf5af2;
+            --blob-2: #0a84ff;
+            --blob-3: #ff375f;
+            --blob-opacity: 0.5;
+
+            --glass-bg: rgba(30, 30, 35, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --glass-shadow: rgba(0, 0, 0, 0.8);
+            --glass-highlight: rgba(255, 255, 255, 0.25);
+            --glass-caustic: rgba(255, 255, 255, 0.05);
+            --reflection-start: rgba(255, 255, 255, 0.15);
+            --reflection-end: rgba(255, 255, 255, 0.0);
+            --glare-color: rgba(255, 255, 255, 0.15);
+
+            --pill-bg: rgba(60, 60, 65, 0.8);
+            --pill-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.2);
+            --icon-color: rgba(255, 255, 255, 0.5);
+            --icon-active: #ffffff;
+            --divider: rgba(255, 255, 255, 0.15);
+
+            --app-bg: #0b0b0d;
+        }
+
+        /* =========================================
+           2. GLOBALES SETUP & HINTERGRUND
+           ========================================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: transparent;
+            -webkit-font-smoothing: antialiased;
+            overflow: hidden;
+            padding: 32px 16px 48px;
+        }
+
+        .bg-mesh {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: var(--bg-color);
+            transition: background 0.8s ease;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: var(--blob-opacity);
+            animation: float 32s ease-in-out infinite;
+            will-change: transform;
+            transition: background 0.8s ease, opacity 0.8s ease;
+        }
+
+        .blob-1 { width: 50vw; height: 50vw; top: -10%; left: -10%; background: var(--blob-1); animation-duration: 34s; animation-delay: 0s; }
+        .blob-2 { width: 45vw; height: 45vw; bottom: -10%; right: -10%; background: var(--blob-2); animation-duration: 27s; animation-delay: -9s; animation-direction: reverse; }
+        .blob-3 { width: 35vw; height: 35vw; top: 30%; left: 40%; background: var(--blob-3); animation-duration: 41s; animation-delay: -18s; }
+
+        @keyframes float {
+            0%   { transform: translate(0%, 0%) scale(1) rotate(0deg); }
+            20%  { transform: translate(8%, 12%) scale(1.1) rotate(8deg); }
+            40%  { transform: translate(-6%, 15%) scale(0.9) rotate(-6deg); }
+            60%  { transform: translate(-10%, -8%) scale(1.05) rotate(10deg); }
+            80%  { transform: translate(6%, -12%) scale(0.95) rotate(-4deg); }
+            100% { transform: translate(0%, 0%) scale(1) rotate(0deg); }
+        }
+
+        /* Top Center Theme Toggle */
+        .top-theme-wrapper {
+            position: relative;
+            z-index: 20;
+        }
+
+        .theme-btn {
+            position: relative;
+            background: var(--glass-bg);
+            backdrop-filter: blur(50px) saturate(200%);
+            -webkit-backdrop-filter: blur(50px) saturate(200%);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            color: var(--icon-color);
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            z-index: 20;
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                0 10px 25px -5px var(--glass-shadow),
+                inset 0 1px 2px -1px var(--glass-highlight),
+                inset 0 0 0 1px var(--glass-border);
+            transition: color 0.3s ease, transform 0.2s ease, background 0.3s ease;
+        }
+
+        .theme-btn:hover { transform: scale(1.05); }
+
+        .theme-icon-wrapper {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            pointer-events: none;
+            transition: transform 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+
+        .theme-btn:active .theme-icon-wrapper { transform: scale(0.8); }
+
+        .theme-icon-wrapper svg {
+            position: absolute;
+            top: 0; left: 0;
+            transition: transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.4s ease;
+            stroke-width: 2.2;
+        }
+
+        .sun { opacity: 1; transform: rotate(0deg) scale(1); }
+        .moon { opacity: 0; transform: rotate(-90deg) scale(0); }
+
+        [data-theme="dark"] .sun { opacity: 0; transform: rotate(90deg) scale(0); }
+        [data-theme="dark"] .moon { opacity: 1; transform: rotate(0deg) scale(1); }
+
+        /* Title Centered Between Toggle and Bottom Pill */
+        .nav-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--icon-active);
+            text-align: center;
+            letter-spacing: -0.03em;
+            transition: color 0.5s ease;
+        }
+
+        .nav-subtitle {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 15px;
+            color: var(--icon-color);
+            transition: color 0.5s ease;
+        }
+
+        /* =========================================
+           3. DAS LIQUID GLASS GEHÄUSE
+           ========================================= */
+        .liquid-nav {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-radius: 99px;
+
+            background: var(--glass-bg);
+            backdrop-filter: blur(50px) saturate(200%);
+            -webkit-backdrop-filter: blur(50px) saturate(200%);
+
+            box-shadow:
+                0 40px 80px -20px var(--glass-shadow),
+                0 10px 30px -10px var(--glass-shadow),
+                inset 0 2px 3px -1px var(--glass-highlight),
+                inset 0 -2px 4px -1px var(--glass-caustic),
+                inset 0 0 0 1px var(--glass-border);
+
+            transition: all 0.5s ease;
+            z-index: 10;
+            max-width: calc(100vw - 32px);
+        }
+
+        .liquid-nav::before {
+            content: '';
+            position: absolute;
+            top: 1px; left: 1px; right: 1px; height: 46%;
+            border-radius: 99px 99px 24px 24px / 99px 99px 12px 12px;
+            background: linear-gradient(180deg, var(--reflection-start) 0%, var(--reflection-end) 100%);
+            pointer-events: none;
+            z-index: 6;
+            transition: background 0.5s ease;
+        }
+
+        .liquid-glare-container {
+            position: absolute;
+            inset: 0;
+            border-radius: 99px;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .liquid-glare {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background: radial-gradient(circle 90px at var(--x, 50%) var(--y, 50%), var(--glare-color) 0%, transparent 100%);
+            mix-blend-mode: overlay;
+        }
+
+        .liquid-nav:hover .liquid-glare { opacity: 1; }
+
+        /* =========================================
+           4B. PAGE TRANSITION (zoom + blur, kein Vollbild-Flash)
+           ========================================= */
+        .page-content {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            background: var(--app-bg);
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.92);
+            transform-origin: var(--ox, 50%) var(--oy, 50%);
+            filter: blur(14px);
+            transition: opacity 0.32s ease,
+                        transform 0.42s cubic-bezier(0.32, 0.9, 0.3, 1),
+                        filter 0.32s ease,
+                        visibility 0s linear 0.42s;
+            display: flex;
+            flex-direction: column;
+            padding: 12px;
+        }
+
+        .page-content.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+            filter: blur(0);
+            transition: opacity 0.3s ease,
+                        transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.35s ease;
+        }
+
+        /* In der Umgebung wird der Mesh-Hintergrund durch eine ruhige, einfarbige
+           Fläche ersetzt; die Home-Elemente ziehen sich nach hinten weg. */
+        body.page-open .bg-mesh .blob { opacity: 0; }
+        body.page-open .bg-mesh { background: var(--app-bg); }
+
+        .top-theme-wrapper,
+        .nav-title,
+        .nav-subtitle,
+        .liquid-nav {
+            transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.32, 0.9, 0.3, 1), filter 0.35s ease;
+        }
+
+        body.page-open .top-theme-wrapper,
+        body.page-open .nav-title,
+        body.page-open .nav-subtitle,
+        body.page-open .liquid-nav {
+            opacity: 0;
+            transform: scale(0.94) translateY(6px);
+            filter: blur(8px);
+            pointer-events: none;
+        }
+
+        /* Mount-Punkt für die Lernumgebungen (cpp.js / csharp.js / sql.js) */
+        .page-inner {
+            position: relative;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .page-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--icon-color);
+            font-size: 14px;
+        }
+
+        /* =========================================
+           4. NAVIGATION BUTTONS & SLIDER
+           ========================================= */
+        .nav-items {
+            position: relative;
+            display: flex;
+            gap: 4px;
+            z-index: 3;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .nav-items::-webkit-scrollbar { display: none; }
+
+        .active-pill {
+            position: absolute;
+            top: 0; left: 0;
+            height: 44px;
+            background: var(--pill-bg);
+            border-radius: 99px;
+            box-shadow: var(--pill-shadow);
+
+            transition: transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1),
+                        width 0.5s cubic-bezier(0.34, 1.2, 0.64, 1),
+                        background 0.5s ease, box-shadow 0.5s ease;
+            z-index: 1;
+        }
+
+        .nav-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            padding: 0 20px;
+            height: 44px;
+            border-radius: 99px;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--icon-color);
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            transition: color 0.3s ease;
+            outline: none;
+            z-index: 2;
+            flex-shrink: 0;
+        }
+
+        .btn-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            pointer-events: none;
+            transform: translateY(-1px);
+            transition: transform 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+
+        .nav-btn:active .btn-content { transform: scale(0.92); }
+        .nav-btn.active { color: var(--icon-active); }
+    </style>
+</head>
+<body>
+
+    <div class="bg-mesh">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="top-theme-wrapper">
+        <button class="theme-btn" id="theme-btn" aria-label="Dark Mode Toggle">
+            <div class="theme-icon-wrapper">
+                <svg class="sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </div>
+        </button>
+    </div>
+
+    <div>
+        <h2 class="nav-title">What do you want to learn?</h2>
+        <p class="nav-subtitle">Pick a language and start solving exercises with an AI tutor at your side.</p>
+    </div>
+
+    <div class="page-content" id="page-content">
+        <div class="page-inner" id="page-inner"></div>
+    </div>
+
+    <nav class="liquid-nav" id="nav">
+        <div class="liquid-glare-container">
+            <div class="liquid-glare" id="glare"></div>
+        </div>
+
+        <div class="nav-items">
+            <div class="active-pill" id="active-pill"></div>
+
+            <button class="nav-btn active" data-env="cpp">
+                <div class="btn-content">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                        <rect x="9" y="9" width="6" height="6"></rect>
+                        <line x1="9" y1="1" x2="9" y2="4"></line>
+                        <line x1="15" y1="1" x2="15" y2="4"></line>
+                        <line x1="9" y1="20" x2="9" y2="23"></line>
+                        <line x1="15" y1="20" x2="15" y2="23"></line>
+                        <line x1="20" y1="9" x2="23" y2="9"></line>
+                        <line x1="20" y1="14" x2="23" y2="14"></line>
+                        <line x1="1" y1="9" x2="4" y2="9"></line>
+                        <line x1="1" y1="14" x2="4" y2="14"></line>
+                    </svg>
+                    <span>C++</span>
+                </div>
+            </button>
+
+            <button class="nav-btn" data-env="csharp">
+                <div class="btn-content">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="4 17 10 11 4 5"></polyline>
+                        <line x1="12" y1="19" x2="20" y2="19"></line>
+                    </svg>
+                    <span>C#</span>
+                </div>
+            </button>
+
+            <button class="nav-btn" data-env="sql">
+                <div class="btn-content">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                    </svg>
+                    <span>SQL</span>
+                </div>
+            </button>
+        </div>
+    </nav>
+
+    <script type="module">
+        import { restoreTheme, toggleTheme, getTheme } from './shared-theme.js?v=1790686500';
+
+        // Jede Umgebung wird erst beim Öffnen geladen (code splitting).
+        const ENVIRONMENTS = {
+            cpp:    { load: () => import('./environments/cpp/cpp.js?v=1790686500'),       init: 'initCppEnvironment' },
+            csharp: { load: () => import('./environments/csharp/csharp.js'), init: 'initCsharpEnvironment' },
+            sql:    { load: () => import('./environments/sql/sql.js'),       init: 'initSqlEnvironment' },
+        };
+
+        restoreTheme('dark');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const activePill = document.getElementById('active-pill');
+            const themeBtn = document.getElementById('theme-btn');
+            const nav = document.getElementById('nav');
+            const glare = document.getElementById('glare');
+            const navItemsContainer = document.querySelector('.nav-items');
+
+            const pageContent = document.getElementById('page-content');
+            const pageInner = document.getElementById('page-inner');
+
+            let activeWorkspace = null;
+            let isAnimating = false;
+
+            function updatePill(btn, smooth = true) {
+                if (!btn) return;
+                activePill.style.transition = smooth
+                    ? 'transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), width 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), background 0.5s ease, box-shadow 0.5s ease'
+                    : 'none';
+                activePill.style.width = `${btn.offsetWidth}px`;
+                activePill.style.transform = `translateX(${btn.offsetLeft}px)`;
+            }
+
+            const initialActive = document.querySelector('.nav-btn.active');
+            if (initialActive) {
+                setTimeout(() => {
+                    updatePill(initialActive, false);
+                    void activePill.offsetWidth;
+                }, 50);
+            }
+
+            // Ursprung des Zooms folgt dem Klickpunkt.
+            function setRevealOrigin(xPct, yPct) {
+                pageContent.style.setProperty('--ox', `${xPct}%`);
+                pageContent.style.setProperty('--oy', `${yPct}%`);
+            }
+
+            function animate(apply, duration = 520) {
+                isAnimating = true;
+                requestAnimationFrame(() => requestAnimationFrame(apply));
+                setTimeout(() => { isAnimating = false; }, duration);
+            }
+
+            async function mountEnvironment(key) {
+                const entry = ENVIRONMENTS[key];
+                if (!entry) return;
+
+                if (activeWorkspace) activeWorkspace.destroy();
+                pageInner.innerHTML = '<div class="page-loading">Loading environment…</div>';
+
+                try {
+                    const module = await entry.load();
+                    const init = module[entry.init] || module.default;
+                    pageInner.innerHTML = '';
+                    activeWorkspace = init(pageInner, { theme: getTheme(), onBack: () => closePage() });
+                } catch (error) {
+                    pageInner.innerHTML = `<div class="page-loading">Could not load ${key}: ${error.message}</div>`;
+                }
+            }
+
+            function openPage(btn, clickEvent) {
+                const key = btn.dataset.env;
+                if (!key || isAnimating) return;
+
+                const rect = btn.getBoundingClientRect();
+                const x = clickEvent ? clickEvent.clientX : rect.left + rect.width / 2;
+                const y = clickEvent ? clickEvent.clientY : rect.top + rect.height / 2;
+                setRevealOrigin((x / window.innerWidth) * 100, (y / window.innerHeight) * 100);
+
+                // Modul parallel zur Animation vorladen.
+                const mounted = mountEnvironment(key);
+
+                animate(() => {
+                    document.body.classList.add('page-open');
+                    pageContent.classList.add('visible');
+                    mounted.catch(() => {});
+                });
+
+                if (!location.hash.startsWith(`#${key}/`)) history.replaceState(null, '', `#${key}`);
+            }
+
+            function closePage() {
+                if (isAnimating) return;
+                const backBtn = pageInner.querySelector('.lado-back');
+                if (backBtn) {
+                    const rect = backBtn.getBoundingClientRect();
+                    setRevealOrigin(
+                        ((rect.left + rect.width / 2) / window.innerWidth) * 100,
+                        ((rect.top + rect.height / 2) / window.innerHeight) * 100,
+                    );
+                }
+
+                animate(() => {
+                    document.body.classList.remove('page-open');
+                    pageContent.classList.remove('visible');
+                    setTimeout(() => {
+                        if (activeWorkspace) { activeWorkspace.destroy(); activeWorkspace = null; }
+                    }, 450);
+                });
+
+                history.replaceState(null, '', '#');
+            }
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && pageContent.classList.contains('visible')) closePage();
+            });
+
+            navButtons.forEach((btn) => {
+                btn.addEventListener('click', (event) => {
+                    navButtons.forEach((b) => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    updatePill(btn);
+                    openPage(btn, event);
+                });
+            });
+
+            themeBtn.addEventListener('click', () => {
+                toggleTheme();
+                setTimeout(() => updatePill(document.querySelector('.nav-btn.active')), 100);
+            });
+
+            navItemsContainer.addEventListener('scroll', () => updatePill(document.querySelector('.nav-btn.active'), false));
+            window.addEventListener('resize', () => updatePill(document.querySelector('.nav-btn.active'), false));
+
+            nav.addEventListener('mousemove', (event) => {
+                const rect = nav.getBoundingClientRect();
+                glare.style.setProperty('--x', `${event.clientX - rect.left}px`);
+                glare.style.setProperty('--y', `${event.clientY - rect.top}px`);
+            });
+
+            // Deep link: index.html#sql öffnet direkt die SQL-Umgebung.
+            const [deepLink] = location.hash.replace('#', '').split('/');
+            if (ENVIRONMENTS[deepLink]) {
+                const btn = document.querySelector(`.nav-btn[data-env="${deepLink}"]`);
+                if (btn) {
+                    navButtons.forEach((b) => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    setTimeout(() => { updatePill(btn, false); btn.click(); }, 60);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

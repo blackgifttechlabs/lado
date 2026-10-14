@@ -1,0 +1,7 @@
+/* Bundled monospace font (DejaVu Sans Mono, free licence) so code looks the same in every browser. */
+@font-face { font-family: "LadoMono"; src: url("./DejaVuSansMono.ttf") format("truetype"); font-weight: 100 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "LadoMono"; src: url("./DejaVuSansMono-Bold.ttf") format("truetype"); font-weight: 700 900; font-style: normal; font-display: swap; }
+
+/* Browsers give <code> and <pre> their own "monospace" font, which can be a serif font in some setups. */
+code, pre, kbd, samp, textarea.cpp-live-editor { font-family: "LadoMono", "DejaVu Sans Mono", "Liberation Mono", "SF Mono", Menlo, Consolas, monospace; }
+pre code { font: inherit; }

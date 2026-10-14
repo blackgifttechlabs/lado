@@ -1,0 +1,38 @@
+/* Notes: one card per part. Big title, tinted definition box, bordered bullet card, code. Uses the workspace theme colors. */
+#page-inner .cpp-lab .cpp-guided-notes.cpp-flat-lesson { display:grid; gap:22px; max-width:940px; padding:0 0 28px; }
+#page-inner .cpp-lab .cpp-note-card,
+#page-inner .cpp-lab .cpp-note-parts > li.cpp-note-card { display:grid; gap:14px; margin:0; padding:26px 28px; position:static; counter-increment:none; border:1px solid var(--ws-border); border-radius:20px; background:var(--ws-surface-alt); box-shadow:0 1px 3px rgba(0,0,0,.08); }
+#page-inner .cpp-lab .cpp-note-parts > li.cpp-note-card::before { content:none; }
+#page-inner .cpp-lab .cpp-note-main h2 { margin:0; font:800 30px/1.15 sans-serif; text-transform:uppercase; letter-spacing:-.01em; color:var(--ws-text); }
+#page-inner .cpp-lab .cpp-note-label { font:800 11px/1 sans-serif; letter-spacing:.06em; text-transform:uppercase; color:#8a2be2; }
+#page-inner .cpp-lab .cpp-note-define { padding:18px 20px; border:1px solid color-mix(in srgb,#6c63ff 35%,transparent); border-radius:14px; background:color-mix(in srgb,#6c63ff 11%,transparent); font:400 16px/1.7 sans-serif; color:var(--ws-text); }
+#page-inner .cpp-lab .cpp-note-define strong { font-weight:800; }
+#page-inner .cpp-lab .cpp-note-sub { display:grid; gap:12px; padding:20px 22px; border:1px solid var(--ws-border); border-radius:14px; background:var(--ws-surface); }
+#page-inner .cpp-lab .cpp-note-sub h5 { margin:0; font:800 16px sans-serif; color:var(--ws-text); }
+#page-inner .cpp-lab .cpp-note-bullets { margin:0; padding-left:22px; display:grid; gap:14px; list-style:disc; }
+#page-inner .cpp-lab .cpp-note-bullets > li { display:list-item; margin:0; padding:0; border:0; background:none; color:var(--ws-text); counter-increment:none; }
+#page-inner .cpp-lab .cpp-note-bullets > li::before { content:none; }
+#page-inner .cpp-lab .cpp-note-bullets strong { display:block; font:800 16px/1.4 sans-serif; color:var(--ws-text); }
+#page-inner .cpp-lab .cpp-note-bullets span { display:block; margin-top:3px; font:400 14.5px/1.65 sans-serif; color:var(--ws-muted); }
+#page-inner .cpp-lab .cpp-note-parts { max-width:none; margin:0; padding:0; list-style:none; display:grid; gap:22px; }
+#page-inner .cpp-lab .cpp-note-parts .cpp-lesson-line { display:grid; gap:8px; color:var(--ws-text); }
+#page-inner .cpp-lab .cpp-note-parts .cpp-lesson-line strong { padding:0; border:0; background:none; text-align:left; font:800 22px/1.2 sans-serif; text-transform:uppercase; color:var(--ws-text); }
+#page-inner .cpp-lab .cpp-note-parts .cpp-lesson-line span { font:400 15.5px/1.7 sans-serif; color:var(--ws-text); }
+#page-inner .cpp-lab .cpp-note-card.is-warning .cpp-lesson-line strong { color:var(--ws-danger); }
+#page-inner .cpp-lab .cpp-note-card pre,
+#page-inner .cpp-lab .cpp-note-parts pre { margin:0; padding:14px 18px; overflow-x:auto; border:1px solid var(--ws-border); border-left:1px solid var(--ws-border); border-radius:12px; background:var(--ws-code-bg); color:var(--ws-text); font:14.5px/1.7 "LadoMono", "DejaVu Sans Mono", "Liberation Mono", "SF Mono", Menlo, Consolas, monospace; }
+#page-inner .cpp-lab .cpp-note-card .cpp-code-type,#page-inner .cpp-lab .cpp-note-card .cpp-code-builtin { color:#71c7ff; }
+#page-inner .cpp-lab .cpp-note-card .cpp-code-control,#page-inner .cpp-lab .cpp-note-card .cpp-code-keyword { color:#d29cff; font-weight:700; }
+#page-inner .cpp-lab .cpp-note-card .cpp-code-string { color:#7fd38a; }
+#page-inner .cpp-lab .cpp-note-card .cpp-code-number { color:#ffbd76; }
+#page-inner .cpp-lab .cpp-note-card .cpp-code-comment { color:#9998a8; font-style:italic; }
+#page-inner .cpp-lab .cpp-note-card .cpp-code-directive,#page-inner .cpp-lab .cpp-note-card .cpp-code-operator { color:#ff8cbb; }
+#page-inner .cpp-lab .cpp-note-card .cpp-note-guided { justify-self:start; margin:0; }
+#page-inner .cpp-lab .cpp-note-parts .cpp-lesson-line strong { display:block; width:auto; box-shadow:none; border-radius:0; outline:0; animation:none; filter:none; }
+
+/* Do it yourself / Debug challenges: task, live goal checklist, compiler-style messages. */
+#page-inner .cpp-practice-bar .cpp-goals { display:grid; gap:6px; margin:10px 0 4px; padding:0; list-style:none; }
+#page-inner .cpp-practice-bar .cpp-goals li { padding:7px 12px; border:1px solid var(--ws-border); border-radius:10px; background:var(--ws-surface); font:600 13px/1.4 sans-serif; color:var(--ws-muted); transition:background .25s,border-color .25s,color .25s; }
+#page-inner .cpp-practice-bar .cpp-goals li.is-ok { border-color:#35c97a; background:color-mix(in srgb,#35c97a 16%,transparent); color:var(--ws-text); }
+#page-inner .cpp-practice-bar .cpp-diy-msg { white-space:pre-wrap; font-family:"LadoMono", "DejaVu Sans Mono", "Liberation Mono", "SF Mono", Menlo, Consolas, monospace; font-size:12.5px; }
+#page-inner .cpp-practice-bar .cpp-diy-kicker { letter-spacing:.08em; }

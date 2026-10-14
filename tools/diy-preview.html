@@ -1,0 +1,15 @@
+<!doctype html><meta charset="utf-8"><title>DIY scene preview</title>
+<link rel="stylesheet" href="../environments/fonts/lado-mono.css"><link rel="stylesheet" href="../environments/csharp/cs.css">
+<style>body{background:#111;margin:0;display:flex;gap:8px;padding:8px;flex-wrap:wrap}.cpp-loop-scene{position:relative!important;width:480px;height:340px;display:flex;flex-direction:column}</style>
+<script type="module">
+import { skeleton, paint } from '../environments/csharp/topics/cs-diy-scene.js';
+const hash=t=>[...String(t)].reduce((a,c)=>a+c.charCodeAt(0),0);
+const task=i=>{for(let n=0;;n++){if(hash('t'+n)%6===i)return 't'+n;}};
+const long='int a = 1; int b = 2; int c = a + b; Console.WriteLine(c); for (int i = 0; i < 3; i++) { Console.WriteLine(i * 2); } string s = "hello"; Console.WriteLine(s.ToUpper()); int[] z = { 1, 2, 3 };';
+const mid='int a = 1; int b = 2; int c = a + b; Console.WriteLine(c); for (int i = 0; i < 3; i++) { Console.WriteLine(i * 2); }';
+const mk=(i,st,code)=>{const s=document.createElement('section');s.className='cpp-loop-scene is-csd';document.body.appendChild(s);skeleton(s);paint(s,{ok:0,total:1,err:'',solved:false,...st,task:task(i)},code);};
+for(let i=0;i<6;i++)mk(i,{solved:true},'Console.WriteLine(1);');
+mk(3,{},mid);
+mk(3,{err:'x'},mid+' int q = 3.5;');
+mk(2,{fellCode:mid},mid);
+</script>
